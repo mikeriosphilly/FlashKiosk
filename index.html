@@ -350,13 +350,13 @@ body{background:#080810;color:var(--text);font-family:'DM Sans',sans-serif;min-h
   </div>
   <div class="mobile-nav-label">Menu</div><nav class="sidebar-nav">
     <div class="nav-section">Design System</div>
-    <div class="nav-item" onclick="showSection('styleguide',this)"><span class="nav-dot"></span>Style Guide</div>
+    <div class="nav-item active" onclick="showSection('styleguide',this)"><span class="nav-dot"></span>Style Guide</div>
     <div class="nav-section" style="margin-top:8px;">Screens</div>
     <div class="nav-item" onclick="showSection('event-list',this)"><span class="nav-dot"></span>Event List</div>
     <div class="nav-item" onclick="showSection('manage-event',this)"><span class="nav-dot"></span>Manage Event</div>
     <div class="nav-item" onclick="showSection('new-event',this)"><span class="nav-dot"></span>New / Edit Event</div>
     <div class="nav-item" onclick="showSection('kiosk-mode',this)"><span class="nav-dot"></span>Kiosk Mode</div>
-    <div class="nav-item active" onclick="showSection('checkin-detail',this)"><span class="nav-dot"></span>Check-In Detail</div>
+    <div class="nav-item" onclick="showSection('checkin-detail',this)"><span class="nav-dot"></span>Check-In Detail</div>
     <div class="nav-item" onclick="showSection('setup',this)"><span class="nav-dot"></span>Setup</div>
   </nav>
   <div class="sidebar-footer">FlashKiosk v1.0 · Design Spec</div>
@@ -368,7 +368,7 @@ body{background:#080810;color:var(--text);font-family:'DM Sans',sans-serif;min-h
 <!-- ═══════════════════════════════════════════════════
      STYLE GUIDE
 ════════════════════════════════════════════════════ -->
-<div id="styleguide" class="section">
+<div id="styleguide" class="section active">
   <div class="sec-header">
     <h1>Style Guide</h1>
     <p>The complete FlashKiosk design system — colors, typography, components, and rules.</p>
@@ -781,7 +781,7 @@ screens the type name always shows in neutral muted grey.</p>
 </div>
 
 <!-- CHECK-IN DETAIL -->
-<div id="checkin-detail" class="section active">
+<div id="checkin-detail" class="section">
   <div class="sec-header"><h1>Check-In Detail</h1><p>Individual client view. Shows full session info, check-in status, and Q&amp;A responses.</p></div>
   <div class="screen-viewer">
     <div class="screen-col">
@@ -925,14 +925,11 @@ function showSection(id, el) {
   for (var i = 0; i < navItems.length; i++) navItems[i].classList.remove('active');
   document.getElementById(id).classList.add('active');
   el.classList.add('active');
-  if (window.innerWidth <= 768) {
-    document.querySelector('.main').scrollIntoView({ behavior: 'smooth' });
-  } else {
-    window.scrollTo(0, 0);
-  }
+  window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+  window.scrollTo({ top: 0, behavior: 'instant' });
   var dots = document.querySelectorAll('.pal-dot');
   for (var i = 0; i < dots.length; i++) {
     (function(dot) {
